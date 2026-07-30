@@ -6,7 +6,7 @@ interface Todo {
     readonly createdAt: Date
 }
 
-type NewTodo = Omit<Todo, 'id' | 'CreatedAt'>
+type NewTodo = Omit<Todo, 'id' | 'createdAt' | 'status'>
 
 enum TodoStatus {
     PENDING, IN_PROGRESS, COMPLETED
