@@ -7,15 +7,26 @@ export function addTodo(state: Todo[], todo: Todo): Todo[] {
 }
 
 export function updateTodo(state: Todo[], id: number, update: Partial<Omit<Todo, 'id' | 'createdAt'>>): Todo[] {
-  const extractedTodo = state.find(item => item.id === id);
-  const updatedTodo = update;
-  type partialTodo = Partial<Todo>;
-  throw new Error('updateTodo: not implemented');
+  if ((state.find(item => item.id === id)) === undefined || (state.find(item => item.id === id)) === null){
+    throw new Error ("Item cannot be found.")
+  }
+  const updatedTodo = state.map(todo =>{
+    if (todo.id === id){
+      return { ...todo, ...update };
+    }
+    else{
+      return todo;
+    }
+  });
+  return updatedTodo
 }
 
 export function removeTodo(state: Todo[], id: number): Todo[] {
-  const updatedArray: Todo[] = [...state];
-  updatedArray.filter(idToDelete => idToDelete.id === id);
+  if ((state.find(item => item.id === id)) === undefined || (state.find(item => item.id === id)) === null){
+    throw new Error ("Item cannot be found.")
+  }
+  const copyOfState: Todo[] = [...state];
+  const updatedArray = copyOfState.filter(idToDelete => idToDelete.id !== id);
   return updatedArray
 }
 
