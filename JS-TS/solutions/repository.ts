@@ -3,22 +3,41 @@ export class InMemoryRepository<T extends { id: number }> {
   private items: T[] = [];
 
   add(entity: T): T {
-    throw new Error('add: not implemented');
+    this.items.push(entity);
+    return entity
   }
 
   update(id: number, patch: Partial<T>): T {
-    throw new Error('update: not implemented');
+    const existing = this.findById(id);
+      if (existing === undefined){
+      throw new Error("Requested Todo was not found");
+    }
+
+    const merged = { ...existing, ...patch };
+    return merged
   }
 
   remove(id: number): void {
-    throw new Error('remove: not implemented');
+    const existing = this.findById(id);
+    if (existing === undefined){
+      throw new Error("Requested Todo was not found");
+    }
+    this.items = this.items.filter(todo => todo.id !== id);
   }
 
   findById(id: number): T | undefined {
-    throw new Error('findById: not implemented');
+    let foundTodo: T | undefined = undefined;
+
+    for (let i: number = 0; i < this.items.length; i++){
+      if (this.items[i].id === id){
+        foundTodo = this.items[i];
+      }
+    }
+    return foundTodo
   }
 
   findAll(): T[] {
-    throw new Error('findAll: not implemented');
+    const itemsCopy = [...this.items];
+    return  itemsCopy
   }
 }

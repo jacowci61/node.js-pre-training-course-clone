@@ -6,7 +6,7 @@ export function toggleAll(state: Todo[], completed: boolean): Todo[] {
       return {...todo, status: TodoStatus.COMPLETED}
     }
     else{
-      return {...todo, status: TodoStatus.IN_PROGRESS}
+      return {...todo, status: TodoStatus.PENDING}
     }
   });
   return toggledTodos;
