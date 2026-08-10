@@ -38,4 +38,22 @@ export class TodoService {
     const matches = allTodos.filter(todo => todo.title.toLowerCase().includes(keyword.toLowerCase()) || todo.description?.toLowerCase().includes(keyword.toLowerCase()))
     return matches
   }
+
+  async complete(id: number): Promise<Todo>{
+    const allTodos = await this.api.getAll();
+    let requiredTodo = allTodos.find(todo => todo.id === id)
+
+    if (requiredTodo === undefined){
+      throw new TodoNotFoundError(id);
+    }
+
+    let patch: Partial<Todo>;
+    patch = { status: TodoStatus.COMPLETED }
+    return this.api.update(id, patch)
+  }
+
+  async getAll(): Promise<Todo[]>{
+    const allTodos = await this.api.getAll();
+    return allTodos
+  }
 }

@@ -14,6 +14,11 @@ export class InMemoryRepository<T extends { id: number }> {
     }
 
     const merged = { ...existing, ...patch };
+    for (let i: number = 0; i < this.items.length; i++){
+    if (this.items[i].id === id){
+      this.items[i] = merged;
+    }
+    }
     return merged
   }
 
