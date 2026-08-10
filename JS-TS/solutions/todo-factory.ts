@@ -4,12 +4,10 @@ let nextId = 1;
 
 export function createTodo(input: NewTodo): Todo {
   return {
-    id : nextId,
+    id : nextId++,
     title: input.title,
     description: input.description,
     status: TodoStatus.PENDING,
     createdAt: new Date()
   }
-
-  nextId++;
 }
