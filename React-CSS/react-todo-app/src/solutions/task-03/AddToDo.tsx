@@ -7,7 +7,7 @@ export const AddToDo: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
   return (
     <div>
-    <input placeholder="Write here to add a todo item"
+    <input placeholder="Add todo"
      value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
     <button onClick={() => {
       if (inputValue.trim() === '') return;  
