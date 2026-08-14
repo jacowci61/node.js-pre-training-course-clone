@@ -37,7 +37,9 @@ import { Todo } from '../../types';
  * - Consider using libraries like Immer for complex updates
  * - Think about state structure before implementing
  */
-export const CompleteToDoList: React.FC = () => {
+
+  // ---------------------------------------------------------------------------------------
+
   // TODO: Implement the CompleteToDoList component
   // 
   // Requirements:
@@ -57,11 +59,48 @@ export const CompleteToDoList: React.FC = () => {
   //   ));
   // };
 
+
+export const CompleteToDoList: React.FC = () => {
+  const [inputValue, setInputValue] = useState('');
+  const [todos, setTodos] = useState<Todo[]>([]);
+  const markCompleted = (id: number) => {
+    setTodos(todos.map(todo => 
+    todo.id === id ? {...todo, completed: true} : todo
+  ))};
   return (
     <div>
-      {/* TODO: Replace this with your implementation */}
-      <h4>Complete ToDo List Component</h4>
-      <p>Implement immutable state updates here</p>
+    <input placeholder="Add todo"
+     value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
+    <button onClick={() => {
+      if (inputValue.trim() === '') return;  
+
+      const newTodo: Todo = {
+        id: Date.now(),
+        title: inputValue,
+        completed: false,
+      };
+
+      setTodos([...todos, newTodo]);  
+      setInputValue('');              
+    }}>
+      Add
+    </button>
+    <ul>
+    {todos.map((todo) =>{
+      return(
+        <div>
+          <button onClick={() => {
+            markCompleted(todo.id)
+          }}>
+            Complete
+          </button>
+        <li key={todo.id}>
+         {todo.title} - {todo.completed ? 'completed' : 'not completed'}
+        </li>
+        </div>
+      )
+    })}
+    </ul>
     </div>
   );
 }; 
