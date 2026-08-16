@@ -53,7 +53,9 @@ import './StyledToDoItem.css';
  * - Use CSS Modules for component-scoped styles
  * - Keep styles close to components
  */
-export const StyledToDoItem: React.FC<TodoItemProps> = ({ todo }) => {
+
+  // -------------------------------------------------------------------
+
   // TODO: Implement the StyledToDoItem component
   // 
   // Requirements:
@@ -70,11 +72,13 @@ export const StyledToDoItem: React.FC<TodoItemProps> = ({ todo }) => {
   // .todo-item { /* base styles */ }
   // .todo-item.completed { /* completed styles */ }
 
+
+export const StyledToDoItem: React.FC<TodoItemProps> = ({ todo }) => {
+  const itemClass = `todo-item ${todo.completed ? 'completed' : ''}`;
+
   return (
-    <div>
-      {/* TODO: Replace this with your implementation */}
-      <h4>Styled ToDo Item Component</h4>
-      <p>Implement conditional styling here</p>
+    <div className={itemClass}>
+      <p>{todo.title} - {todo.completed ? 'completed' : 'not completed'}</p>
     </div>
   );
 }; 
