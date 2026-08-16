@@ -43,7 +43,9 @@ import { Todo } from '../../types';
  * - Use useMemo for expensive calculations
  * - Keep state minimal and derive the rest
  */
-export const FilteredToDoList: React.FC = () => {
+
+  // ---------------------------------------------------------------
+
   // TODO: Implement the FilteredToDoList component
   // 
   // Requirements:
@@ -63,11 +65,77 @@ export const FilteredToDoList: React.FC = () => {
   //   return true; // 'all' case
   // });
 
+
+export const FilteredToDoList: React.FC = () => {
+  const [inputValue, setInputValue] = useState('');
+  const [todos, setTodos] = useState<Todo[]>([]);
+  const [filter, setFilter] = useState<'all' | 'active' | 'completed'>('all');
+
+  const filteredTodos = todos.filter(todo => {
+     if (filter === 'active') return !todo.completed;
+     if (filter === 'completed') return todo.completed;
+     return true;
+  });
+
+  const markCompleted = (id: number) => {
+    setTodos(todos.map(todo => 
+    todo.id === id ? {...todo, completed: true} : todo
+  ))};
+
   return (
     <div>
-      {/* TODO: Replace this with your implementation */}
-      <h4>Filtered ToDo List Component</h4>
-      <p>Implement derived state and filtering here</p>
+    <input placeholder="Add todo"
+     value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
+     
+    <button onClick={() => {
+      if (inputValue.trim() === '') return;  
+
+      const newTodo: Todo = {
+        id: Date.now(),
+        title: inputValue,
+        completed: false,
+      };
+
+      setTodos([...todos, newTodo]);  
+      setInputValue('');              
+    }}>
+      Add
+    </button>
+
+    <button onClick={() => {
+      setFilter('all')
+    }}>
+      Show all
+    </button>
+
+    <button onClick={() => {
+      setFilter('completed')
+    }}>
+      Show completed
+    </button>
+
+    <button onClick={() => {
+      setFilter('active')
+    }}>
+      Show active
+    </button>
+
+    <ul>
+    {filteredTodos.map((todo) =>{
+      return(
+        <div>
+          <button onClick={() => {
+            markCompleted(todo.id)
+          }}>
+            Complete
+          </button>
+        <li key={todo.id}>
+         {todo.title} - {todo.completed ? 'completed' : 'not completed'}
+        </li>
+        </div>
+      )
+    })}
+    </ul>
     </div>
   );
-}; 
+};  
