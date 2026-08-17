@@ -61,7 +61,8 @@ import { Todo } from '../../types';
  * - Use dependencies array to control when effect runs
  * - Handle loading and error states
  */
-export const FetchToDos: React.FC = () => {
+
+
   // TODO: Implement the FetchToDos component
   // 
   // Requirements:
@@ -88,12 +89,38 @@ export const FetchToDos: React.FC = () => {
   //       setLoading(false);
   //     });
   // }, []);
+export const FetchToDos: React.FC = () => {
+
+  const [todos, setTodos] = useState<Todo[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/todos')
+      .then(response => response.json())
+      .then(data => {
+        setTodos(data.slice(0, 5));
+        setLoading(false);
+      })
+      .catch(err => {
+        setError(err.message);
+        setLoading(false);
+      });
+  }, []);
 
   return (
     <div>
-      {/* TODO: Replace this with your implementation */}
-      <h4>Fetch ToDos Component</h4>
-      <p>Implement data fetching with useEffect here</p>
+    {loading ? (
+        <p>Loading...</p>
+      ) : error ? (
+        <p>Error: {error}</p>
+      ) : (
+        <ul>
+          {todos.map((todo) => (
+            <li key={todo.id}>{todo.title}</li>
+          ))}
+        </ul>
+    )}
     </div>
   );
 }; 
