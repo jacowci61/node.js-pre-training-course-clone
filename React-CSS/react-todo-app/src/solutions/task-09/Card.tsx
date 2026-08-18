@@ -70,7 +70,7 @@ import './Card.css';
  * - Composition is more flexible than inheritance
  * - Keep components focused and single-purpose
  */
-export const Card: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+
   // TODO: Implement the Card component
   // 
   // Requirements:
@@ -96,11 +96,12 @@ export const Card: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   //   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   // }
 
+export const Card: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+
+
   return (
-    <div>
-      {/* TODO: Replace this with your implementation */}
-      <h4>Card Component</h4>
-      <p>Implement component composition with children prop here</p>
+    <div className="card">
+      {children}
     </div>
   );
 }; 
