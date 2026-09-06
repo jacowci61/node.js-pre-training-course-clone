@@ -14,6 +14,6 @@ export const ToDoItem: React.FC<TodoItemProps> = ({ todo }) => {
   // <ToDoItem todo={{ id: 1, title: 'Learn React', completed: true }} />
   const style = todo.completed ? {textDecoration: 'line-through', color: 'green'} : {color: 'red'}
   return (
-    <p style={style}>{todo.title} - {todo.completed ? 'completed' : 'not completed'}</p>
+    <p style={style}><span>{todo.title}</span> - <span>{todo.completed ? 'completed' : 'not completed'}</span></p>
   );
 }; 

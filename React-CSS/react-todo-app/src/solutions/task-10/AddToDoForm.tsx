@@ -123,7 +123,7 @@ export const AddToDoForm: React.FC = () => {
   return (
     <div>
       <form  onSubmit={handleSubmit}>
-        <input type="text" value={title} onChange={(e) => setTitle(e.target.value)}/>
+        <input type="text" placeholder="Add todo" value={title} onChange={(e) => setTitle(e.target.value)}/>
         <button type="submit">Submit</button>
       </form>
       <ul>
