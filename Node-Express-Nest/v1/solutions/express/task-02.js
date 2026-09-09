@@ -30,5 +30,5 @@ app.get('/users/:id', (req, res) => {
   res.send('User and status are correct');
 });
 
-const PORT = 3001; // different port than task1, in case both run at once
+const PORT = 3001;
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
