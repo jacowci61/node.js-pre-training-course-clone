@@ -8,6 +8,7 @@ CREATE TABLE users (
 CREATE TABLE todos (
     id INT PRIMARY KEY,
     title VARCHAR(200) NOT NULL,
+    description varchar(200),
     status ENUM('PENDING', 'IN_PROGRESS', 'COMPLETED') NOT NULL DEFAULT 'PENDING',
     created_at TIMESTAMP,
     user_id INT NOT NULL,
