@@ -14,4 +14,4 @@ todos.status = "COMPLETED"
 where id in (5) -- select specific todo by its id
 -- -------------------
 delete from todos
-where id in (5) -- select specific todo by its id
+where id in (5)
