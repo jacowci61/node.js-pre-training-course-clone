@@ -5,14 +5,14 @@ CREATE TABLE users (
     name VARCHAR(100) NOT NULL
 );
 
-CREATE TABLE todos (
-    id INT PRIMARY KEY,
-    title VARCHAR(200) NOT NULL,
+create table todos (
+    id INT auto_increment primary key,
+    title VARCHAR(200) not null,
     description varchar(200),
-    status ENUM('PENDING', 'IN_PROGRESS', 'COMPLETED') NOT NULL DEFAULT 'PENDING',
-    created_at TIMESTAMP,
-    user_id INT NOT NULL,
-    FOREIGN KEY(user_id) references users(id) 
+    status ENUM('PENDING', 'IN_PROGRESS', 'COMPLETED') not null default 'PENDING',
+    created_at TIMESTAMP default CURRENT_TIMESTAMP,
+    user_id INT not null,
+    foreign key(user_id) references users(id) 
 );
 
 -- i had MySQL already installed and configured, so i didn't enter any console commands
