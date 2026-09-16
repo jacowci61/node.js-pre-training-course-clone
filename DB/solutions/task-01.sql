@@ -18,3 +18,6 @@ create table todos (
 -- i had MySQL already installed and configured, so i didn't enter any console commands
 -- this script creates a database to store tables, then creates parent table (users)
 -- and child table (todos), with foreign key referencing "id" column from "users" table
+
+-- i faced issue where DBeaver wouldn't work with correct SQL queries,
+--  so most of the queries were tested in MySQL Workbench
