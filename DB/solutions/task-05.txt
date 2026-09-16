@@ -2,3 +2,7 @@ select status,
 count(*) from todos
 group by status
 -- ----------------
+SELECT users.name, COUNT(*) AS todo_count
+FROM users
+LEFT JOIN todos ON users.id = todos.user_id
+GROUP BY users.id, users.name;
