@@ -1,0 +1,4 @@
+select status,
+count(*) from todos
+group by status
+-- ----------------
