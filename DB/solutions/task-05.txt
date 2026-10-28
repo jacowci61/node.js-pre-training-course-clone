@@ -6,3 +6,9 @@ SELECT users.name, COUNT(*) AS todo_count
 FROM users
 LEFT JOIN todos ON users.id = todos.user_id
 GROUP BY users.id, users.name;
+-- ----------------
+SELECT users.name, COUNT(*) AS todo_count
+FROM users
+LEFT JOIN todos ON users.id = todos.user_id
+WHERE todos.title IS NULL
+GROUP BY users.id;
