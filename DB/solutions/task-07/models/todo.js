@@ -10,16 +10,18 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      todo.belongsTo(models.user, { foreignKey: 'user_id' });
     }
   }
   todo.init({
-    firstName: DataTypes.STRING,
-    lastName: DataTypes.STRING,
-    email: DataTypes.STRING
+    title: DataTypes.STRING,
+    description: DataTypes.STRING,
+    status: DataTypes.ENUM('PENDING', 'IN_PROGRESS', 'COMPLETED')
   }, {
     sequelize,
     modelName: 'todo',
+    underscored: true,
+    updatedAt: false,
   });
   return todo;
 };
